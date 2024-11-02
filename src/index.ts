@@ -37,6 +37,7 @@ app
     const data = parser.parse(xml, {
       allowBooleanAttributes: true,
     });
+
     if (data.feed["at:deleted-entry"]) return c.text("OK");
     const video = data.feed.entry;
     if (!video) return c.text("OK");
@@ -49,7 +50,7 @@ app
       video: {
         id: videoId,
         title: video.title,
-        link: video.link["@_href"],
+        link: `https://www.youtube.com/watch?v=${videoId}`,
       },
       channel: {
         id: video["yt:channelId"],
