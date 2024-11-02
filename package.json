@@ -1,15 +1,25 @@
 {
-  "name": "auto-yt-notify",
+  "name": "@blankparticle/auto-yt-notify",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "hono": "^4.6.8"
+    "@hono/valibot-validator": "^0.4.1",
+    "dedent": "^1.5.3",
+    "fast-xml-parser": "^4.5.0",
+    "hono": "^4.6.8",
+    "valibot": "1.0.0-beta.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241022.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-sort-imports": "^1.8.6",
     "wrangler": "^3.83.0"
   }
 }

@@ -1,8 +1,3 @@
-```
-npm install
-npm run dev
-```
+## Auto-YT-Notify
 
-```
-npm run deploy
-```
+A Cloudflare Worker that automatically sends notifications to a Discord channel when a new video is published on YouTube.

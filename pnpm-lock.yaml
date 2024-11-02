@@ -8,13 +8,31 @@ importers:
 
   .:
     dependencies:
+      '@hono/valibot-validator':
+        specifier: ^0.4.1
+        version: 0.4.1(hono@4.6.8)(valibot@1.0.0-beta.3(typescript@5.6.3))
+      dedent:
+        specifier: ^1.5.3
+        version: 1.5.3
+      fast-xml-parser:
+        specifier: ^4.5.0
+        version: 4.5.0
       hono:
         specifier: ^4.6.8
         version: 4.6.8
+      valibot:
+        specifier: 1.0.0-beta.3
+        version: 1.0.0-beta.3(typescript@5.6.3)
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20241022.0
         version: 4.20241022.0
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
+      prettier-plugin-sort-imports:
+        specifier: ^1.8.6
+        version: 1.8.6(typescript@5.6.3)
       wrangler:
         specifier: ^3.83.0
         version: 3.84.1(@cloudflare/workers-types@4.20241022.0)
@@ -212,6 +230,12 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
+  '@hono/valibot-validator@0.4.1':
+    resolution: {integrity: sha512-yOxJfU//A6T5oceBz+SylwYCQEmbgvsLxjqereIBSnRABEbQpd1j7zKf4lBP8i7JP5zvrKsHZHLmcLa/TCh8Sw==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      valibot: ^1.0.0 || ^1.0.0-beta || ^1.0.0-rc
+
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
     engines: {node: '>=6.0.0'}
@@ -281,6 +305,14 @@ packages:
       supports-color:
         optional: true
 
+  dedent@1.5.3:
+    resolution: {integrity: sha512-NHQtfOOW68WD8lgypbLA5oT+Bt0xXJhiYvoR6SmmNXZfpzOGXwdKWmcwG8N7PwVVWV3eF/68nmD9BaJSsTBhyQ==}
+    peerDependencies:
+      babel-plugin-macros: ^3.1.0
+    peerDependenciesMeta:
+      babel-plugin-macros:
+        optional: true
+
   defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
 
@@ -299,6 +331,10 @@ packages:
   exit-hook@2.2.1:
     resolution: {integrity: sha512-eNTPlAD67BmP31LDINZ3U7HSF8l57TxOY2PmBJ1shpCvpnxBF93mWCE8YHBnXs8qiUZJc9WDcWIeC3a2HIAMfw==}
     engines: {node: '>=6'}
+
+  fast-xml-parser@4.5.0:
+    resolution: {integrity: sha512-/PlTQCI96+fZMAOLMZK4CWG1ItCbfZ/0jx7UIJFChPNrx7tcEgerUgWbeieCM9MfHInUDyK8DWYZ+YrywDJuTg==}
+    hasBin: true
 
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
@@ -402,6 +438,16 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
+  prettier-plugin-sort-imports@1.8.6:
+    resolution: {integrity: sha512-jOEzFCyvdDL8geCmr4DP/VBKULZ6OaDQHBEmHTuFHf4EzWyedmwnHg2KawNy5rnrQ6gnCqwrfgymMQZctzCE1Q==}
+    peerDependencies:
+      typescript: '>4.0.0'
+
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   printable-characters@1.0.42:
     resolution: {integrity: sha512-dKp+C4iXWK4vVYZmYSd0KBH5F/h1HoZRsbJ82AVKRO3PEo8L4lBS/vLwhVtpwwuYcoIsVY+1JYKR268yn480uQ==}
 
@@ -446,6 +492,9 @@ packages:
     resolution: {integrity: sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw==}
     engines: {node: '>=4', npm: '>=6'}
 
+  strnum@1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
+
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
@@ -456,6 +505,11 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  typescript@5.6.3:
+    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
 
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
@@ -469,6 +523,14 @@ packages:
 
   unenv-nightly@2.0.0-20241024-111401-d4156ac:
     resolution: {integrity: sha512-xJO1hfY+Te+/XnfCYrCbFbRcgu6XEODND1s5wnVbaBCkuQX7JXF7fHEXPrukFE2j8EOH848P8QN19VO47XN8hw==}
+
+  valibot@1.0.0-beta.3:
+    resolution: {integrity: sha512-PRknKVj2249cF8Pxqil1dahkVHgyaPDq++Y8sA96R5lx4nYnVazs11kefOsRVD3PSygYJG5q2MEdEm7kuSWa+g==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   workerd@1.20241022.0:
     resolution: {integrity: sha512-jyGXsgO9DRcJyx6Ovv7gUyDPc3UYC2i/E0p9GFUg6GUzpldw4Y93y9kOmdfsOnKZ3+lY53veSiUniiBPE6Q2NQ==}
@@ -616,6 +678,11 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
+  '@hono/valibot-validator@0.4.1(hono@4.6.8)(valibot@1.0.0-beta.3(typescript@5.6.3))':
+    dependencies:
+      hono: 4.6.8
+      valibot: 1.0.0-beta.3(typescript@5.6.3)
+
   '@jridgewell/resolve-uri@3.1.2': {}
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
@@ -685,6 +752,8 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
+  dedent@1.5.3: {}
+
   defu@6.1.4: {}
 
   esbuild@0.17.19:
@@ -717,6 +786,10 @@ snapshots:
   estree-walker@0.6.1: {}
 
   exit-hook@2.2.1: {}
+
+  fast-xml-parser@4.5.0:
+    dependencies:
+      strnum: 1.0.5
 
   fill-range@7.1.1:
     dependencies:
@@ -807,6 +880,13 @@ snapshots:
 
   picomatch@2.3.1: {}
 
+  prettier-plugin-sort-imports@1.8.6(typescript@5.6.3):
+    dependencies:
+      prettier: 3.3.3
+      typescript: 5.6.3
+
+  prettier@3.3.3: {}
+
   printable-characters@1.0.42: {}
 
   readdirp@3.6.0:
@@ -851,6 +931,8 @@ snapshots:
 
   stoppable@1.1.0: {}
 
+  strnum@1.0.5: {}
+
   supports-preserve-symlinks-flag@1.0.0: {}
 
   to-regex-range@5.0.1:
@@ -858,6 +940,8 @@ snapshots:
       is-number: 7.0.0
 
   tslib@2.8.1: {}
+
+  typescript@5.6.3: {}
 
   ufo@1.5.4: {}
 
@@ -873,6 +957,10 @@ snapshots:
       ohash: 1.1.4
       pathe: 1.1.2
       ufo: 1.5.4
+
+  valibot@1.0.0-beta.3(typescript@5.6.3):
+    optionalDependencies:
+      typescript: 5.6.3
 
   workerd@1.20241022.0:
     optionalDependencies:
