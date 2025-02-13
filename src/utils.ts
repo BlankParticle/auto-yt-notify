@@ -139,7 +139,10 @@ export const renewSubscriptionCronWorker: ExportedHandlerScheduledHandler<Cloudf
       callbackUrl: `https://${env.APP_DOMAIN}/callback`,
     });
     if (!subscribed) discordLog(env, `Failed to renew subscription for ${subscription.channelId}`);
-    renewedSubscriptions.push(subscription);
+    renewedSubscriptions.push({
+      channelId: subscription.channelId,
+      lastSubscribedAt: Date.now(),
+    });
   }
 
   await env.KV.put(SUBSCRIPTION_KV_KEY, JSON.stringify(renewedSubscriptions));

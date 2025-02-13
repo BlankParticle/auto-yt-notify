@@ -10,7 +10,8 @@ import {
 import { vValidator } from "@hono/valibot-validator";
 import { XMLParser } from "fast-xml-parser";
 import { object, string } from "valibot";
-import { Hono } from "hono";
+import { Hono } from "hono/tiny";
+import dedent from "dedent";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
 
@@ -26,6 +27,10 @@ app
   .post("/api/unsubscribe", vValidator("json", object({ channelId: string() })), (c) =>
     removeSubscription(c.env, c.req.valid("json").channelId).then(() => c.json({ message: "Unsubscribed!" })),
   )
+  .post("/api/force-renew", async (c) => {
+    await renewSubscriptionCronWorker({} as any, c.env, {} as any);
+    return c.json({ message: "Forced Renewal Done!" });
+  })
   .get("/callback", vValidator("query", object({ "hub.challenge": string() })), async (c) => c.text(c.req.valid("query")["hub.challenge"]))
   .post("/callback", async (c) => {
     const xml = await c.req.text();
@@ -34,9 +39,7 @@ app
       return c.json({ message: "Invalid Signature" });
     }
     const parser = new XMLParser();
-    const data = parser.parse(xml, {
-      allowBooleanAttributes: true,
-    });
+    const data = parser.parse(xml);
 
     if (data.feed["at:deleted-entry"]) return c.text("OK");
     const video = data.feed.entry;
@@ -64,7 +67,11 @@ app
     return c.text("OK");
   })
   .onError(async (err, c) => {
-    await discordLog(c.env, `Encountered an Error\n${err.stack}`);
+    await discordLog(
+      c.env,
+      dedent`Encountered an Error
+      ${err.stack}`,
+    );
     console.error(err);
     return c.json({ message: "Something went wrong" });
   });
