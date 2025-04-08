@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "youtube-notifier",
+  "main": "src/app.ts",
+  "compatibility_date": "2025-04-01",
+  "vars": {
+    "APP_DOMAIN": "youtube-notifier.rx2.dev",
+  },
+  "routes": [
+    {
+      "pattern": "youtube-notifier.rx2.dev",
+      "custom_domain": true,
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "156eb30bd7b64bb2be0c16caea81cfdf",
+    },
+  ],
+  "triggers": {
+    "crons": ["0 0 */3 * *"],
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+  },
+}
