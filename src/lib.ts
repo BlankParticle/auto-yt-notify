@@ -103,7 +103,7 @@ export const requestSubscription = async ({
 
 export const verifyNotificationSignature = async (secret: string, signature: string, xml: string) => {
   const [algo, matchingParts] = signature.split("=");
-  const algorithm = { name: "HMAC", hash: { name: algo.toUpperCase() } };
+  const algorithm = { name: "HMAC", hash: { name: algo.toUpperCase().replace("SHA", "SHA-") } };
   const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), algorithm, false, ["sign"]);
   const signatureArrayBuffer = await crypto.subtle.sign(algorithm.name, key, new TextEncoder().encode(xml));
   const signatureHex = Array.from(new Uint8Array(signatureArrayBuffer))
