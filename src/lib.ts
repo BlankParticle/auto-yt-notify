@@ -66,6 +66,7 @@ export class YoutubeNotifier {
     const data = parser.parse(xml);
 
     const callbackData = v.safeParse(callbackSchema, data);
+
     if (!callbackData.success) return;
     if (!callbackData.output) return;
 
@@ -121,27 +122,31 @@ export const discordLog = async (webhookUrl: string, message: string) =>
 
 export const callbackSchema = v.pipe(
   v.object({
-    feed: v.union([
-      v.object({ "at:deleted-entry": v.unknown() }),
-      v.object({
-        entry: v.optional(
-          v.object({
-            "yt:videoId": v.string(),
-            title: v.string(),
-            "yt:channelId": v.string(),
-            author: v.object({
-              name: v.string(),
-              uri: v.string(),
-            }),
-            published: v.date(),
-            updated: v.date(),
+    feed: v.object({
+      "at:deleted-entry": v.optional(v.unknown()),
+      entry: v.optional(
+        v.object({
+          "yt:videoId": v.string(),
+          title: v.string(),
+          "yt:channelId": v.string(),
+          author: v.object({
+            name: v.string(),
+            uri: v.string(),
           }),
-        ),
-      }),
-    ]),
+          published: v.pipe(
+            v.string(),
+            v.transform((i) => new Date(i)),
+          ),
+          updated: v.pipe(
+            v.string(),
+            v.transform((i) => new Date(i)),
+          ),
+        }),
+      ),
+    }),
   }),
   v.transform((data) => {
-    if ("at:deleted-entry" in data.feed) return null;
+    if (data.feed["at:deleted-entry"]) return null;
     if (!data.feed.entry) return null;
     const video = data.feed.entry;
     return {
